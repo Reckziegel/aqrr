@@ -1,0 +1,31 @@
+template:
+  params:
+    bootswatch: yeti
+
+navbar:
+  right:
+    - icon: fab fa-github
+      href: https://github.com/Reckziegel/aqqr
+
+reference:
+    - title: Daily Data
+      contents:
+      - aqr_bab_daily
+      - aqr_mkt_daily
+      - aqr_smb_daily
+      - aqr_hml_ff_daily
+      - aqr_hml_devil_daily
+      - aqr_umd_daily
+
+    - title: Monthly Data
+      contents:
+      - aqr_bab_monthly
+      - aqr_mkt_monthly
+      - aqr_smb_monthly
+      - aqr_hml_ff_monthly
+      - aqr_hml_devil_monthly
+      - aqr_umd_monthly
+
+    - title: Premia
+      contents:
+      - aqr_factor_premia_monthly
