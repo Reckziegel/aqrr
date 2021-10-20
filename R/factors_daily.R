@@ -33,12 +33,12 @@ aqr_bab_daily <- function(.tidy = TRUE) {
     col_types = c("date", rep("numeric", 29))
   )
 
-  bab_clean <- bab_raw |>
+  bab <- bab_raw |>
     dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
     dplyr::rename(date = "DATE")
 
   if (.tidy) {
-    bab <- bab_clean |>
+    bab <- bab |>
       tidyr::pivot_longer(cols = -.data$date)
   }
 
@@ -77,12 +77,12 @@ aqr_mkt_daily <- function(.tidy = TRUE) {
     col_types = c("date", rep("numeric", 29))
   )
 
-  mkt_clean <- mkt_raw |>
+  mkt <- mkt_raw |>
     dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
     dplyr::rename(date = "DATE")
 
   if (.tidy) {
-    mkt <- mkt_clean |>
+    mkt <- mkt |>
       tidyr::pivot_longer(cols = -.data$date)
   }
 
@@ -122,12 +122,12 @@ aqr_smb_daily <- function(.tidy = TRUE) {
     col_types = c("date", rep("numeric", 29))
   )
 
-  smb_clean <- smb_raw |>
+  smb <- smb_raw |>
     dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
     dplyr::rename(date = "DATE")
 
   if (.tidy) {
-    smb <- smb_clean |>
+    smb <- smb |>
       tidyr::pivot_longer(cols = -.data$date)
   }
 
@@ -167,12 +167,12 @@ aqr_hml_ff_daily <- function(.tidy = TRUE) {
     col_types = c("date", rep("numeric", 29))
   )
 
-  hml_ff_clean <- hml_ff_raw |>
+  hml_ff <- hml_ff_raw |>
     dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
     dplyr::rename(date = "DATE")
 
   if (.tidy) {
-    hml_ff <- hml_ff_clean |>
+    hml_ff <- hml_ff |>
       tidyr::pivot_longer(cols = -.data$date)
   }
 
@@ -212,12 +212,12 @@ aqr_hml_devil_daily <- function(.tidy = TRUE) {
     col_types = c("date", rep("numeric", 29))
   )
 
-  hml_devil_clean <- hml_devil_raw |>
+  hml_devil <- hml_devil_raw |>
     dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
     dplyr::rename(date = "DATE")
 
   if (.tidy) {
-    hml_devil <- hml_devil_clean |>
+    hml_devil <- hml_devil |>
       tidyr::pivot_longer(cols = -.data$date)
   }
 
@@ -256,15 +256,60 @@ aqr_umd_daily <- function(.tidy = TRUE) {
     col_types = c("date", rep("numeric", 29))
   )
 
-  hml_umd_clean <- hml_umd_raw |>
+  hml_umd <- hml_umd_raw |>
     dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
     dplyr::rename(date = "DATE")
 
   if (.tidy) {
-    umd <- hml_umd_clean |>
+    umd <- hml_umd |>
       tidyr::pivot_longer(cols = -.data$date)
   }
 
   umd
+
+}
+
+
+# Quality Minus Junk --------------------------------------------
+
+#' Get the Up Quality Minus Junk Factor
+#'
+#' Downloads data with the self-financing returns of of a long/short Quality
+#' Minus Junk (QMJ) factors.
+#'
+#' @param .tidy A flag. Should the output be tidy? The default is \code{TRUE}.
+#'
+#' @return A \code{tibble}.
+#' @export
+#'
+#' @examples
+#' if (FALSE) {
+#'   aqr_qmj_daily()
+#' }
+aqr_qmj_daily <- function(.tidy = TRUE) {
+
+  assertthat::assert_that(assertthat::is.flag(.tidy))
+
+  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Quality-Minus-Junk-Factors-Daily.xlsx"
+  destfile <- "Quality_Minus_Junk_Factors_Daily.xlsx"
+  curl::curl_download(url, destfile)
+
+  qmj_raw <- readxl::read_excel(
+    path      = destfile,
+    sheet     = "QMJ Factors",
+    range     = "A19:AD25414",
+    col_types = c("date", rep("numeric", 29))
+  )
+
+  qmj <- qmj_raw |>
+    dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
+    dplyr::rename(date = "DATE")
+
+  if (.tidy) {
+    qmj <- qmj |>
+      tidyr::pivot_longer(cols = -.data$date)
+  }
+
+  qmj
 
 }

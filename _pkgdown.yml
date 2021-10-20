@@ -8,7 +8,7 @@ navbar:
       href: https://github.com/Reckziegel/aqqr
 
 reference:
-    - title: Daily Data
+    - title: Daily Factors
       contents:
       - aqr_bab_daily
       - aqr_mkt_daily
@@ -16,8 +16,9 @@ reference:
       - aqr_hml_ff_daily
       - aqr_hml_devil_daily
       - aqr_umd_daily
+      - aqr_qmj_daily
 
-    - title: Monthly Data
+    - title: Monthly Factors
       contents:
       - aqr_bab_monthly
       - aqr_mkt_monthly
@@ -25,7 +26,16 @@ reference:
       - aqr_hml_ff_monthly
       - aqr_hml_devil_monthly
       - aqr_umd_monthly
+      - aqr_qmj_monthly
 
-    - title: Premia
+    - title: Historical Premia
       contents:
       - aqr_factor_premia_monthly
+
+    - title: Commodities in the Long Run
+      contents:
+      - aqr_commodities_long_run
+
+    - title: Credit Risk Premium
+      contents:
+      - aqr_credit_risk_premium

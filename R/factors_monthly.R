@@ -268,3 +268,48 @@ aqr_umd_monthly <- function(.tidy = TRUE) {
   umd
 
 }
+
+
+# Quality Minus Junk --------------------------------------------
+
+#' Get the Quality Minus Junk Factor
+#'
+#' Downloads data with the self-financing returns of a of a long/short Quality
+#' Minus Junk (QMJ) factors.
+#'
+#' @param .tidy A flag. Should the output be tidy? The default is \code{TRUE}.
+#'
+#' @return A \code{tibble}.
+#' @export
+#'
+#' @examples
+#' if (FALSE) {
+#'   aqr_qmj_monthly()
+#' }
+aqr_qmj_monthly <- function(.tidy = TRUE) {
+
+  assertthat::assert_that(assertthat::is.flag(.tidy))
+
+  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Quality-Minus-Junk-Factors-Monthly.xlsx"
+  destfile <- "Quality_Minus_Junk_Factors_Monthly.xlsx"
+  curl::curl_download(url, destfile)
+
+  qmj_raw <- readxl::read_excel(
+    path      = destfile,
+    sheet     = "QMJ Factors",
+    range     = "A19:AD789",
+    col_types = c("date", rep("numeric", 29))
+  )
+
+  qmj <- qmj_raw |>
+    dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
+    dplyr::rename(date = "DATE")
+
+  if (.tidy) {
+    qmj <- qmj |>
+      tidyr::pivot_longer(cols = -.data$date)
+  }
+
+  qmj
+
+}
