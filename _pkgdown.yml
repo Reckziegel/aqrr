@@ -39,3 +39,7 @@ reference:
     - title: Credit Risk Premium
       contents:
       - aqr_credit_risk_premium
+
+    - title: Momentum Indexes
+      contents:
+      - aqr_momentum_monthly
