@@ -8,7 +8,7 @@ navbar:
       href: https://github.com/Reckziegel/aqqr
 
 reference:
-    - title: Daily Factors
+    - title: Factors - Daily Periodicity
       contents:
       - aqr_bab_daily
       - aqr_mkt_daily
@@ -18,7 +18,7 @@ reference:
       - aqr_umd_daily
       - aqr_qmj_daily
 
-    - title: Monthly Factors
+    - title: Factors - Monthly Periodicity
       contents:
       - aqr_bab_monthly
       - aqr_mkt_monthly
@@ -32,7 +32,7 @@ reference:
       contents:
       - aqr_factor_premia_monthly
 
-    - title: Commodities in the Long Run
+    - title: Commodities
       contents:
       - aqr_commodities_long_run
 

@@ -16,7 +16,9 @@ knitr::opts_chunk$set(
 # aqrr
 
 <!-- badges: start -->
+
 [![R-CMD-check](https://github.com/Reckziegel/aqqr/workflows/R-CMD-check/badge.svg)](https://github.com/Reckziegel/aqqr/actions)
+
 <!-- badges: end -->
 
 Get the [datasets](https://www.aqr.com/Insights/Datasets) computed by the AQR research team in R.
@@ -29,3 +31,37 @@ You can install the development version of aqrr from [GitHub](https://github.com
 # install.packages("devtools")
 devtools::install_github("Reckziegel/aqqr")
 ```
+
+```{r}
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2, warn.conflicts = FALSE)
+library(aqrr)
+
+# Quality Minus Junk Factor
+qmj <- aqr_qmj_monthly()
+na.omit(qmj)
+```
+
+
+```{r}
+qmj |> 
+  filter(date >= "2000-01-02") |> 
+  group_by(name) |> 
+  na.omit() |> 
+  mutate(performance = cumprod(exp(value))) |> 
+  ungroup() |> 
+  ggplot(aes(x = date, y = performance, color = name)) + 
+  geom_line(show.legend = FALSE) + 
+  scale_y_log10() + 
+  facet_wrap(~name, scales = "free_y") + 
+  theme(axis.text.x = element_text(angle = 90)) + 
+  labs(title    = "Performance of the Quality Minus Junk Factor", 
+       subtitle = "Monthly Data from 2020-01-02 up to 2021-08-31", 
+       caption  = "More info on www.aqr.com", 
+       x        = NULL, 
+       y        = NULL)
+```
+
+## Functions
+
+See the all available functions in the [reference](https://reckziegel.github.io/aqrr/reference/index.html) page.
