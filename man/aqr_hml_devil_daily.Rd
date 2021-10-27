@@ -15,7 +15,7 @@ A \code{tibble}.
 \description{
 Downloads data with the  self-financing returns of equity High Minus Low Devil
 (HML Devil) factors using the Book to Market definition of Asness and Frazzini (2013).
-aa
+devtoo
 }
 \examples{
 if (FALSE) {

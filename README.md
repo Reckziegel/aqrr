@@ -5,8 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/Reckziegel/aqqr/workflows/R-CMD-check/badge.svg)](https://github.com/Reckziegel/aqqr/actions)
-
+[![R-CMD-check](https://www.github.com/Reckziegel/aqqr/workflows/R-CMD-check/badge.svg)](https://www.github.com/Reckziegel/aqqr/actions)
 <!-- badges: end -->
 
 Get the [datasets](https://www.aqr.com/Insights/Datasets) computed by
@@ -15,7 +14,7 @@ the AQR research team in R.
 ## Installation
 
 You can install the development version of aqrr from
-[GitHub](https://github.com/) with:
+[GitHub](https://www.github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -72,3 +71,29 @@ qmj |>
 See the all available functions in the
 [reference](https://reckziegel.github.io/aqrr/reference/index.html)
 page.
+
+## References
+
+-   <https://www.aqr.com>
+
+-   Asness, Cliff S. and Frazzini, Andrea and Pedersen, Lasse Heje,
+    Quality Minus Junk (June 5, 2017). Available at SSRN:
+    <https://ssrn.com/abstract=2312432> or
+    <http://dx.doi.org/10.2139/ssrn.2312432>
+
+-   Asness, Cliff S. and Moskowitz, Tobias J. and Moskowitz, Tobias J.
+    and Pedersen, Lasse Heje, Value and Momentum Everywhere (June 1,
+    2012). Chicago Booth Research Paper No. 12-53, Fama-Miller Working
+    Paper, Available at SSRN: <https://ssrn.com/abstract=2174501> or
+    <http://dx.doi.org/10.2139/ssrn.2174501>
+
+-   Frazzini, Andrea and Pedersen, Lasse Heje, Betting Against Beta
+    (October 9, 2011). Swiss Finance Institute Research Paper No. 12-17,
+    Available at SSRN: <https://ssrn.com/abstract=2049939> or
+    <http://dx.doi.org/10.2139/ssrn.2049939>
+
+-   Ilmanen, Antti S. and Israel, Ronen and Moskowitz, Tobias J. and
+    Moskowitz, Tobias J. and Thapar, Ashwin K and Lee, Rachel, How Do
+    Factor Premia Vary Over Time? A Century of Evidence (February 18,
+    2021). Available at SSRN: <https://ssrn.com/abstract=3400998> or
+    <http://dx.doi.org/10.2139/ssrn.3400998>
