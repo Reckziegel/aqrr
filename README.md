@@ -21,45 +21,52 @@ You can install the development version of aqrr from
 devtools::install_github("Reckziegel/aqqr")
 ```
 
+## Toy Example
+
 ``` r
-library(dplyr, warn.conflicts = FALSE)
-library(ggplot2, warn.conflicts = FALSE)
+library(dplyr)
+library(ggplot2)
 library(aqrr)
 
 # Quality Minus Junk Factor
 qmj <- aqr_qmj_monthly()
-na.omit(qmj)
-#> # A tibble: 9,669 x 3
+qmj <- na.omit(qmj)
+qmj
+#> # A tibble: 5,751 x 3
 #>    date       name     value
 #>    <date>     <chr>    <dbl>
-#>  1 1957-07-31 USA    0.0112 
-#>  2 1957-08-31 USA    0.00488
-#>  3 1957-09-30 USA    0.00701
-#>  4 1957-10-31 USA    0.00271
-#>  5 1957-11-30 USA   -0.00897
-#>  6 1957-12-31 USA   -0.00327
-#>  7 1958-01-31 USA   -0.0252 
-#>  8 1958-02-28 USA    0.00480
-#>  9 1958-03-31 USA    0.0159 
-#> 10 1958-04-30 USA    0.00256
-#> # ... with 9,659 more rows
+#>  1 1957-09-03 USA    0.00701
+#>  2 1957-10-31 USA    0.00271
+#>  3 1957-11-30 USA   -0.00897
+#>  4 1957-12-31 USA   -0.00327
+#>  5 1958-11-03 USA   -0.0252 
+#>  6 1958-04-03 USA    0.00256
+#>  7 1958-06-03 USA    0.00570
+#>  8 1958-09-03 USA   -0.00812
+#>  9 1958-10-31 USA   -0.00814
+#> 10 1958-11-30 USA    0.0116 
+#> # ... with 5,741 more rows
 ```
 
 ``` r
-qmj |> 
+qmj |>
+  
+  # data manipulation
   filter(date >= "2000-01-02") |> 
   group_by(name) |> 
   na.omit() |> 
-  mutate(performance = cumprod(exp(value))) |> 
+  mutate(performance = cumprod(exp(value))) |> # cumulative performance
   ungroup() |> 
+  
+  # plot
   ggplot(aes(x = date, y = performance, color = name)) + 
   geom_line(show.legend = FALSE) + 
   scale_y_log10() + 
   facet_wrap(~name, scales = "free_y") + 
   theme(axis.text.x = element_text(angle = 90)) + 
   labs(title    = "Performance of the Quality Minus Junk Factor", 
-       subtitle = "Monthly Data from 2020-01-02 up to 2021-08-31", 
-       caption  = "More info on www.aqr.com", 
+       subtitle = "Monthly Data from 2020-01-02 to 2021-08-31", 
+       caption  = "Source: www.aqr.com", 
        x        = NULL, 
        y        = NULL)
 ```
