@@ -18,21 +18,27 @@ aqr_commodities_long_run <- function(.tidy = TRUE) {
 
   assertthat::assert_that(assertthat::is.flag(.tidy))
 
-  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Commodities-for-the-Long-Run-Index-Level-Data-Monthly.xlsx"
+  url <- "https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Commodities-for-the-Long-Run-Index-Level-Data-Monthly.xlsx?sc_lang=en"
   destfile <- "Commodities_for_the_Long_Run_Index_Level_Data_Monthly.xlsx"
   curl::curl_download(url, destfile)
 
   commodities_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "Commodities for the Long Run",
-    range     = "A11:L1747"
+    range     = "A11:L1753"
   )
 
   commodities <- commodities_raw |>
-    dplyr::mutate(Date = lubridate::as_date(.data$Date)) |>
-    dplyr::slice(-c(1:275)) |>
-    dplyr::rename(date = "Date") |>
-    stats::na.omit()
+    tidyr::separate(
+      col     = "Date",
+      into    = c("month", "day", "year"),
+      sep     = "/",
+      remove  = TRUE,
+      convert = TRUE) |>
+    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
+    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
+    dplyr::select(.data$date, dplyr::everything())
+
 
   if (.tidy) {
     commodities <- commodities |>

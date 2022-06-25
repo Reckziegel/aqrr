@@ -22,20 +22,27 @@ aqr_bab_monthly <- function(.tidy = TRUE) {
 
   assertthat::assert_that(assertthat::is.flag(.tidy))
 
-  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
+  url <- "https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
   destfile <- "Betting_Against_Beta_Equity_Factors_Monthly.xlsx"
   curl::curl_download(url, destfile)
 
   bab_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "BAB Factors",
-    range     = "A19:AD1108",
-    col_types = c("date", rep("numeric", 29))
+    range     = "A19:AD1115",
+    col_types = c("guess", rep("numeric", 29))
   )
 
   bab <- bab_raw |>
-    dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
-    dplyr::rename(date = "DATE")
+    tidyr::separate(
+      col     = "DATE",
+      into    = c("month", "day", "year"),
+      sep     = "/",
+      remove  = TRUE,
+      convert = TRUE) |>
+    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
+    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
+    dplyr::select(.data$date, dplyr::everything())
 
   if (.tidy) {
     bab <- bab |>
@@ -66,20 +73,27 @@ aqr_mkt_monthly <- function(.tidy = TRUE) {
 
   assertthat::assert_that(assertthat::is.flag(.tidy))
 
-  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
+  url <- "https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
   destfile <- "Betting_Against_Beta_Equity_Factors_Monthly.xlsx"
   curl::curl_download(url, destfile)
 
   mkt_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "MKT",
-    range     = "A19:AD1161",
-    col_types = c("date", rep("numeric", 29))
+    range     = "A19:AD1168",
+    col_types = c("guess", rep("numeric", 29))
   )
 
   mkt <- mkt_raw |>
-    dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
-    dplyr::rename(date = "DATE")
+    tidyr::separate(
+      col     = "DATE",
+      into    = c("month", "day", "year"),
+      sep     = "/",
+      remove  = TRUE,
+      convert = TRUE) |>
+    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
+    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
+    dplyr::select(.data$date, dplyr::everything())
 
   if (.tidy) {
     mkt <- mkt |>
@@ -111,20 +125,27 @@ aqr_smb_monthly <- function(.tidy = TRUE) {
 
   assertthat::assert_that(assertthat::is.flag(.tidy))
 
-  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
+  url <- "https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
   destfile <- "Betting_Against_Beta_Equity_Factors_Monthly.xlsx"
   curl::curl_download(url, destfile)
 
   smb_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "SMB",
-    range     = "A19:AD1161",
-    col_types = c("date", rep("numeric", 29))
+    range     = "A19:AD1168",
+    col_types = c("guess", rep("numeric", 29))
   )
 
   smb <- smb_raw |>
-    dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
-    dplyr::rename(date = "DATE")
+    tidyr::separate(
+      col     = "DATE",
+      into    = c("month", "day", "year"),
+      sep     = "/",
+      remove  = TRUE,
+      convert = TRUE) |>
+    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
+    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
+    dplyr::select(.data$date, dplyr::everything())
 
   if (.tidy) {
     smb <- smb |>
@@ -156,20 +177,27 @@ aqr_hml_ff_monthly <- function(.tidy = TRUE) {
 
   assertthat::assert_that(assertthat::is.flag(.tidy))
 
-  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
+  url <- "https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
   destfile <- "Betting_Against_Beta_Equity_Factors_Monthly.xlsx"
   curl::curl_download(url, destfile)
 
   hml_ff_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "HML FF",
-    range     = "A19:AD1161",
-    col_types = c("date", rep("numeric", 29))
+    range     = "A19:AD1168",
+    col_types = c("guess", rep("numeric", 29))
   )
 
   hml_ff <- hml_ff_raw |>
-    dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
-    dplyr::rename(date = "DATE")
+    tidyr::separate(
+      col     = "DATE",
+      into    = c("month", "day", "year"),
+      sep     = "/",
+      remove  = TRUE,
+      convert = TRUE) |>
+    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
+    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
+    dplyr::select(.data$date, dplyr::everything())
 
   if (.tidy) {
     hml_ff <- hml_ff |>
@@ -201,20 +229,27 @@ aqr_hml_devil_monthly <- function(.tidy = TRUE) {
 
   assertthat::assert_that(assertthat::is.flag(.tidy))
 
-  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
+  url <- "https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
   destfile <- "Betting_Against_Beta_Equity_Factors_Monthly.xlsx"
   curl::curl_download(url, destfile)
 
   hml_devil_raw <- readxl::read_excel(
     path      = destfile,
-    sheet     = "HML FF",
-    range     = "A19:AD1155",
-    col_types = c("date", rep("numeric", 29))
+    sheet     = "HML Devil",
+    range     = "A19:AD1168",
+    col_types = c("guess", rep("numeric", 29))
   )
 
   hml_devil <- hml_devil_raw |>
-    dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
-    dplyr::rename(date = "DATE")
+    tidyr::separate(
+      col     = "DATE",
+      into    = c("month", "day", "year"),
+      sep     = "/",
+      remove  = TRUE,
+      convert = TRUE) |>
+    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
+    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
+    dplyr::select(.data$date, dplyr::everything())
 
   if (.tidy) {
     hml_devil <- hml_devil |>
@@ -245,20 +280,27 @@ aqr_umd_monthly <- function(.tidy = TRUE) {
 
   assertthat::assert_that(assertthat::is.flag(.tidy))
 
-  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
+  url <- "https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Betting-Against-Beta-Equity-Factors-Monthly.xlsx"
   destfile <- "Betting_Against_Beta_Equity_Factors_Monthly.xlsx"
   curl::curl_download(url, destfile)
 
   hml_umd_raw <- readxl::read_excel(
     path      = destfile,
-    sheet     = "HML FF",
-    range     = "A19:AD25414",
-    col_types = c("date", rep("numeric", 29))
+    sheet     = "UMD",
+    range     = "A19:AD1162",
+    col_types = c("guess", rep("numeric", 29))
   )
 
   hml_umd <- hml_umd_raw |>
-    dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
-    dplyr::rename(date = "DATE")
+    tidyr::separate(
+      col     = "DATE",
+      into    = c("month", "day", "year"),
+      sep     = "/",
+      remove  = TRUE,
+      convert = TRUE) |>
+    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
+    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
+    dplyr::select(.data$date, dplyr::everything())
 
   if (.tidy) {
     umd <- hml_umd |>
@@ -290,20 +332,27 @@ aqr_qmj_monthly <- function(.tidy = TRUE) {
 
   assertthat::assert_that(assertthat::is.flag(.tidy))
 
-  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Quality-Minus-Junk-Factors-Monthly.xlsx"
+  url <- "https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/Quality-Minus-Junk-Factors-Monthly.xlsx"
   destfile <- "Quality_Minus_Junk_Factors_Monthly.xlsx"
   curl::curl_download(url, destfile)
 
   qmj_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "QMJ Factors",
-    range     = "A19:AD789",
-    col_types = c("date", rep("numeric", 29))
+    range     = "A19:AD796",
+    col_types = c("guess", rep("numeric", 29))
   )
 
   qmj <- qmj_raw |>
-    dplyr::mutate(DATE = lubridate::as_date(.data$DATE)) |>
-    dplyr::rename(date = "DATE")
+    tidyr::separate(
+      col     = "DATE",
+      into    = c("month", "day", "year"),
+      sep     = "/",
+      remove  = TRUE,
+      convert = TRUE) |>
+    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
+    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
+    dplyr::select(.data$date, dplyr::everything())
 
   if (.tidy) {
     qmj <- qmj |>

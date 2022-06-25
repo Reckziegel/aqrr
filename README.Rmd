@@ -32,9 +32,9 @@ You can install the development version of aqrr from [GitHub](https://github.com
 devtools::install_github("Reckziegel/aqqr")
 ```
 
-```{r}
-library(dplyr, warn.conflicts = FALSE)
-library(ggplot2, warn.conflicts = FALSE)
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
 library(aqrr)
 
 # Quality Minus Junk Factor

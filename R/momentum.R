@@ -17,14 +17,14 @@ aqr_momentum_monthly <- function(.tidy = TRUE) {
 
   assertthat::assert_that(assertthat::is.flag(.tidy))
 
-  url <- "https://images.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/AQR-Index-Returns.xls"
+  url <- "https://www.aqr.com/-/media/AQR/Documents/Insights/Data-Sets/AQR-Index-Returns.xls"
   destfile <- "AQR_Index_Returns.xls"
   curl::curl_download(url, destfile)
 
   momentum_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "Returns",
-    range     = "A2:D503",
+    range     = "A2:D510",
     col_types = c("date", rep("numeric", 3))
   )
 
