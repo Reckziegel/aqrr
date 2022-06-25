@@ -45,10 +45,11 @@ qmj
 
 
 ```{r}
+regions_to_exclude <- c("Global Ex USA", "North America", "Global", "Europe", "Pacific")
 qmj |>
   
   # data manipulation
-  filter(date >= "2000-01-02") |> 
+  filter(date >= "2000-01-02", !name %in% regions_to_exclude) |> 
   group_by(name) |> 
   na.omit() |> 
   mutate(performance = cumprod(exp(value))) |> # cumulative performance
