@@ -17,5 +17,6 @@ Imports:
     readxl (>= 1.4.0),
     tidyr (>= 1.2.0),
     curl (>= 4.3.2),
-    dplyr (>= 1.0.9)
+    dplyr (>= 1.0.9),
+    ggplot2 (>= 3.3.6)
 RoxygenNote: 7.2.0
