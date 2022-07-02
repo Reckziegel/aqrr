@@ -215,7 +215,7 @@ aqr_hml_ff_daily <- function(.tidy = TRUE) {
 #'
 #' Downloads data with the  self-financing returns of equity High Minus Low Devil
 #' (HML Devil) factors using the Book to Market definition of Asness and Frazzini (2013).
-#'devtoo
+#'
 #' @param .tidy A flag. Should the output be tidy? The default is \code{TRUE}.
 #'
 #' @return A \code{tibble}.
