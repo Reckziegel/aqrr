@@ -1,5 +1,5 @@
 
-# Betting Agains Beta -----------------------------------------------------
+# Betting Against Beta -----------------------------------------------------
 
 #' Get the Bet Against Beta Factor
 #'
@@ -29,7 +29,7 @@ aqr_bab_daily <- function(.tidy = TRUE) {
   bab_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "BAB Factors",
-    range     = "A19:AD24257",
+    range     = "A19:AD24561",
     col_types = c("guess", rep("numeric", 29))
   )
 
@@ -40,13 +40,13 @@ aqr_bab_daily <- function(.tidy = TRUE) {
       sep     = "/",
       remove  = TRUE,
       convert = TRUE) |>
-    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
-    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
-    dplyr::select(.data$date, dplyr::everything())
+    dplyr::mutate(date = lubridate::make_date(year, month, day)) |>
+    dplyr::select(-c(day, month, year)) |>
+    dplyr::select(date, dplyr::everything())
 
   if (.tidy) {
     bab <- bab |>
-      tidyr::pivot_longer(cols = -.data$date)
+      tidyr::pivot_longer(cols = -date, names_ptypes = factor())
   }
 
   bab
@@ -80,7 +80,7 @@ aqr_mkt_daily <- function(.tidy = TRUE) {
   mkt_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "MKT",
-    range     = "A19:AD25556",
+    range     = "A19:AD25870",
     col_types = c("guess", rep("numeric", 29))
   )
 
@@ -91,13 +91,13 @@ aqr_mkt_daily <- function(.tidy = TRUE) {
       sep     = "/",
       remove  = TRUE,
       convert = TRUE) |>
-    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
-    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
-    dplyr::select(.data$date, dplyr::everything())
+    dplyr::mutate(date = lubridate::make_date(year, month, day)) |>
+    dplyr::select(-c(day, month, year)) |>
+    dplyr::select(date, dplyr::everything())
 
   if (.tidy) {
     mkt <- mkt |>
-      tidyr::pivot_longer(cols = -.data$date)
+      tidyr::pivot_longer(cols = -date, names_ptypes = factor())
   }
 
   mkt
@@ -132,7 +132,7 @@ aqr_smb_daily <- function(.tidy = TRUE) {
   smb_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "SMB",
-    range     = "A19:AD21451",
+    range     = "A19:AD25870",
     col_types = c("guess", rep("numeric", 29))
   )
 
@@ -143,13 +143,13 @@ aqr_smb_daily <- function(.tidy = TRUE) {
       sep     = "/",
       remove  = TRUE,
       convert = TRUE) |>
-    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
-    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
-    dplyr::select(.data$date, dplyr::everything())
+    dplyr::mutate(date = lubridate::make_date(year, month, day)) |>
+    dplyr::select(-c(day, month, year)) |>
+    dplyr::select(date, dplyr::everything())
 
   if (.tidy) {
     smb <- smb |>
-      tidyr::pivot_longer(cols = -.data$date)
+      tidyr::pivot_longer(cols = -date, names_ptypes = factor())
   }
 
   smb
@@ -184,7 +184,7 @@ aqr_hml_ff_daily <- function(.tidy = TRUE) {
   hml_ff_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "HML FF",
-    range     = "A19:AD25566",
+    range     = "A19:AD25870",
     col_types = c("guess", rep("numeric", 29))
   )
 
@@ -195,13 +195,13 @@ aqr_hml_ff_daily <- function(.tidy = TRUE) {
       sep     = "/",
       remove  = TRUE,
       convert = TRUE) |>
-    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
-    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
-    dplyr::select(.data$date, dplyr::everything())
+    dplyr::mutate(date = lubridate::make_date(year, month, day)) |>
+    dplyr::select(-c(day, month, year)) |>
+    dplyr::select(date, dplyr::everything())
 
   if (.tidy) {
     hml_ff <- hml_ff |>
-      tidyr::pivot_longer(cols = -.data$date)
+      tidyr::pivot_longer(cols = -date, names_ptypes = factor())
   }
 
   hml_ff
@@ -236,7 +236,7 @@ aqr_hml_devil_daily <- function(.tidy = TRUE) {
   hml_devil_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "HML FF",
-    range     = "A19:AD25566",
+    range     = "A19:AD25870",
     col_types = c("guess", rep("numeric", 29))
   )
 
@@ -247,13 +247,13 @@ aqr_hml_devil_daily <- function(.tidy = TRUE) {
       sep     = "/",
       remove  = TRUE,
       convert = TRUE) |>
-    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
-    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
-    dplyr::select(.data$date, dplyr::everything())
+    dplyr::mutate(date = lubridate::make_date(year, month, day)) |>
+    dplyr::select(-c(day, month, year)) |>
+    dplyr::select(date, dplyr::everything())
 
   if (.tidy) {
     hml_devil <- hml_devil |>
-      tidyr::pivot_longer(cols = -.data$date)
+      tidyr::pivot_longer(cols = -date, names_ptypes = factor())
   }
 
   hml_devil
@@ -287,7 +287,7 @@ aqr_umd_daily <- function(.tidy = TRUE) {
   hml_umd_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "UMD",
-    range     = "A19:AD25416",
+    range     = "A19:AD25720",
     col_types = c("guess", rep("numeric", 29))
   )
 
@@ -298,13 +298,13 @@ aqr_umd_daily <- function(.tidy = TRUE) {
       sep     = "/",
       remove  = TRUE,
       convert = TRUE) |>
-    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
-    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
-    dplyr::select(.data$date, dplyr::everything())
+    dplyr::mutate(date = lubridate::make_date(year, month, day)) |>
+    dplyr::select(-c(day, month, year)) |>
+    dplyr::select(date, dplyr::everything())
 
   if (.tidy) {
     umd <- hml_umd |>
-      tidyr::pivot_longer(cols = -.data$date)
+      tidyr::pivot_longer(cols = -date, names_ptypes = factor())
   }
 
   umd
@@ -339,7 +339,7 @@ aqr_qmj_daily <- function(.tidy = TRUE) {
   qmj_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "QMJ Factors",
-    range     = "A19:AD16657",
+    range     = "A19:AD16961",
     col_types = c("guess", rep("numeric", 29))
   )
 
@@ -350,13 +350,13 @@ aqr_qmj_daily <- function(.tidy = TRUE) {
       sep     = "/",
       remove  = TRUE,
       convert = TRUE) |>
-    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
-    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
-    dplyr::select(.data$date, dplyr::everything())
+    dplyr::mutate(date = lubridate::make_date(year, month, day)) |>
+    dplyr::select(-c(day, month, year)) |>
+    dplyr::select(date, dplyr::everything())
 
   if (.tidy) {
     qmj <- qmj |>
-      tidyr::pivot_longer(cols = -.data$date)
+      tidyr::pivot_longer(cols = -date, names_ptypes = factor())
   }
 
   qmj
