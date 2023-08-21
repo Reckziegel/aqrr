@@ -1,45 +1,4 @@
+url: https://reckziegel.github.io/aqrr/
 template:
-  params:
-    bootswatch: yeti
+  bootstrap: 5
 
-navbar:
-  right:
-    - icon: fab fa-github
-      href: https://github.com/Reckziegel/aqqr
-
-reference:
-    - title: Factors - Daily Periodicity
-      contents:
-      - aqr_bab_daily
-      - aqr_mkt_daily
-      - aqr_smb_daily
-      - aqr_hml_ff_daily
-      - aqr_hml_devil_daily
-      - aqr_umd_daily
-      - aqr_qmj_daily
-
-    - title: Factors - Monthly Periodicity
-      contents:
-      - aqr_bab_monthly
-      - aqr_mkt_monthly
-      - aqr_smb_monthly
-      - aqr_hml_ff_monthly
-      - aqr_hml_devil_monthly
-      - aqr_umd_monthly
-      - aqr_qmj_monthly
-
-    - title: Historical Premia
-      contents:
-      - aqr_factor_premia_monthly
-
-    - title: Commodities
-      contents:
-      - aqr_commodities_long_run
-
-    - title: Credit Risk Premium
-      contents:
-      - aqr_credit_risk_premium
-
-    - title: Momentum Indexes
-      contents:
-      - aqr_momentum_monthly

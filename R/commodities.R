@@ -22,27 +22,34 @@ aqr_commodities_long_run <- function(.tidy = TRUE) {
   destfile <- "Commodities_for_the_Long_Run_Index_Level_Data_Monthly.xlsx"
   curl::curl_download(url, destfile)
 
-  commodities_raw <- readxl::read_excel(
-    path      = destfile,
-    sheet     = "Commodities for the Long Run",
-    range     = "A11:L1753"
+  suppressMessages(
+    commodities_raw <- readxl::read_excel(
+      path      = destfile,
+      sheet     = "Commodities for the Long Run",
+      range     = "A11:L1762",
+    )
   )
 
-  commodities <- commodities_raw |>
-    tidyr::separate(
-      col     = "Date",
-      into    = c("month", "day", "year"),
-      sep     = "/",
-      remove  = TRUE,
-      convert = TRUE) |>
-    dplyr::mutate(date = lubridate::dmy(as.double(paste0(.data$day, .data$month, .data$year)))) |>
-    dplyr::select(-c(.data$day, .data$month, .data$year)) |>
-    dplyr::select(.data$date, dplyr::everything())
+  names(commodities_raw)[[1]] <- "date"
+
+  suppressWarnings(
+    commodities <- commodities_raw |>
+      tidyr::separate(
+        col     = "date",
+        into    = c("year", "month", "day"),
+        sep     = "-",
+        remove  = TRUE,
+        convert = TRUE) |>
+      dplyr::mutate(date = lubridate::make_date(year, month, day)) |>
+      dplyr::select(-c(day, month, year)) |>
+      dplyr::select(date, dplyr::everything())
+  )
 
 
   if (.tidy) {
     commodities <- commodities |>
-      tidyr::pivot_longer(cols = -c(.data$date, dplyr::starts_with("State")))
+      tidyr::pivot_longer(cols = -c(date, dplyr::starts_with("State"))) |>
+      dplyr::mutate_if(is.character, as.factor)
   }
 
   commodities

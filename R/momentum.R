@@ -24,17 +24,17 @@ aqr_momentum_monthly <- function(.tidy = TRUE) {
   momentum_raw <- readxl::read_excel(
     path      = destfile,
     sheet     = "Returns",
-    range     = "A2:D510",
+    range     = "A2:D519",
     col_types = c("date", rep("numeric", 3))
   )
 
   momentum <- momentum_raw |>
-    dplyr::mutate(Month = lubridate::as_date(.data$Month)) |>
+    dplyr::mutate(Month = lubridate::as_date(Month)) |>
     dplyr::rename(date = "Month")
 
   if (.tidy) {
     momentum <- momentum |>
-      tidyr::pivot_longer(cols = -.data$date)
+      tidyr::pivot_longer(cols = -date)
   }
 
   momentum

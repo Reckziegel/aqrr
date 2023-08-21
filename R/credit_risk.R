@@ -29,12 +29,12 @@ aqr_credit_risk_premium <- function(.tidy = TRUE) {
   )
 
   credit_risk <- credit_risk_raw |>
-    dplyr::mutate(Date = lubridate::as_date(.data$Date)) |>
+    dplyr::mutate(Date = lubridate::as_date(Date)) |>
     dplyr::rename(date = "Date")
 
   if (.tidy) {
     credit_risk <- credit_risk |>
-      tidyr::pivot_longer(cols = -.data$date)
+      tidyr::pivot_longer(cols = -date, names_ptypes = factor())
   }
 
   credit_risk

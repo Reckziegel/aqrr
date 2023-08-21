@@ -23,22 +23,24 @@ aqr_factor_premia_monthly <- function(.tidy = TRUE) {
   destfile <- "Century_of_Factor_Premia_Monthly.xlsx"
   curl::curl_download(url, destfile)
 
-  factor_premia_raw <- readxl::read_excel(
-    path      = destfile,
-    sheet     = "Century of Factor Premia",
-    range     = "A19:AS1169",
-    col_types = c("guess", rep("numeric", 44))
+  factor_premia_raw <- suppressMessages(
+    readxl::read_excel(
+      path      = destfile,
+      sheet     = "Century of Factor Premia",
+      range     = "A19:AS1183",
+      col_types = c("guess", rep("numeric", 44))
+    )
   )
 
   names(factor_premia_raw)[[1]] <- "date"
 
   factor_premia <- factor_premia_raw |>
-    dplyr::mutate(date = lubridate::as_date(.data$date))
+    dplyr::mutate(date = lubridate::as_date(date))
     #dplyr::select(-dplyr::starts_with("Intl"))
 
   if (.tidy) {
     factor_premia <- factor_premia |>
-      tidyr::pivot_longer(cols = -.data$date)
+      tidyr::pivot_longer(cols = -date)
   }
 
   factor_premia
