@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # aqrr
 
 <!-- badges: start -->
-[![R-CMD-check](https://www.github.com/Reckziegel/aqqr/workflows/R-CMD-check/badge.svg)](https://www.github.com/Reckziegel/aqqr/actions)
+[![R-CMD-check](https://github.com/Reckziegel/aqqr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Reckziegel/aqqr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Get the [datasets](https://www.aqr.com/Insights/Datasets) computed by the AQR research team in R.
