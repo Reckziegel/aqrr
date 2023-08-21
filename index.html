@@ -76,20 +76,20 @@
 <span><span class="va">qmj</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/aqr_qmj_monthly.html">aqr_qmj_monthly</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">qmj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">qmj</span><span class="op">)</span></span>
 <span><span class="va">qmj</span></span>
-<span><span class="co">#&gt; # A tibble: 5,751 x 3</span></span>
+<span><span class="co">#&gt; # A tibble: 10,276 x 3</span></span>
 <span><span class="co">#&gt;    date       name     value</span></span>
 <span><span class="co">#&gt;    &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 1957-09-03 USA    0.00701</span></span>
-<span><span class="co">#&gt;  2 1957-10-31 USA    0.00271</span></span>
-<span><span class="co">#&gt;  3 1957-11-30 USA   -0.00897</span></span>
-<span><span class="co">#&gt;  4 1957-12-31 USA   -0.00327</span></span>
-<span><span class="co">#&gt;  5 1958-11-03 USA   -0.0252 </span></span>
-<span><span class="co">#&gt;  6 1958-04-03 USA    0.00256</span></span>
-<span><span class="co">#&gt;  7 1958-06-03 USA    0.00570</span></span>
-<span><span class="co">#&gt;  8 1958-09-03 USA   -0.00812</span></span>
-<span><span class="co">#&gt;  9 1958-10-31 USA   -0.00814</span></span>
-<span><span class="co">#&gt; 10 1958-11-30 USA    0.0116 </span></span>
-<span><span class="co">#&gt; # ... with 5,741 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt;  1 1957-07-31 USA    0.0112 </span></span>
+<span><span class="co">#&gt;  2 1957-08-31 USA    0.00488</span></span>
+<span><span class="co">#&gt;  3 1957-09-30 USA    0.00701</span></span>
+<span><span class="co">#&gt;  4 1957-10-31 USA    0.00271</span></span>
+<span><span class="co">#&gt;  5 1957-11-30 USA   -0.00897</span></span>
+<span><span class="co">#&gt;  6 1957-12-31 USA   -0.00327</span></span>
+<span><span class="co">#&gt;  7 1958-01-31 USA   -0.0252 </span></span>
+<span><span class="co">#&gt;  8 1958-02-28 USA    0.00480</span></span>
+<span><span class="co">#&gt;  9 1958-03-31 USA    0.0159 </span></span>
+<span><span class="co">#&gt; 10 1958-04-30 USA    0.00256</span></span>
+<span><span class="co">#&gt; # i 10,266 more rows</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">regions_to_exclude</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Global Ex USA"</span>, <span class="st">"North America"</span>, <span class="st">"Global"</span>, <span class="st">"Europe"</span>, <span class="st">"Pacific"</span><span class="op">)</span></span>
 <span><span class="va">qmj</span> <span class="op">|&gt;</span></span>
@@ -163,7 +163,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.github.com/Reckziegel/aqqr/actions" class="external-link"><img src="https://www.github.com/Reckziegel/aqqr/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/Reckziegel/aqqr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/Reckziegel/aqqr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 
